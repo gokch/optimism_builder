@@ -3,9 +3,9 @@ FROM golang:1.22 as op
 WORKDIR /app
 
 ENV OP_REPO=https://github.com/ethereum-optimism/optimism.git
-ENV OP_VERSION=${OP_VERSION:-tutorials/chain}
+ENV OP_VERSION=${OP_VERSION:-v1.7.2}
 
-RUN git clone $OP_REPO --branch $OP_VERSION --single-branch . && \
+RUN git clone $OP_REPO --branch op-node/$OP_VERSION --single-branch . && \
     git switch -c branch-$OP_VERSION
 
 RUN make -C op-node VERSION=$OP_VERSION op-node

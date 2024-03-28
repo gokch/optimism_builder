@@ -2,11 +2,8 @@ FROM ubuntu
 
 WORKDIR /app
 
-ENV OP_REPO=https://github.com/ethereum-optimism/optimism.git
-ENV OP_VERSION=${OP_VERSION:-tutorials/chain}
-
 # init system dependencies
-RUN apt-get update && apt-get install -y sudo jq wget curl gnupg git make ca-certificates && \
+RUN apt-get update && apt-get install -y sudo jq wget curl gnupg git make bc ca-certificates && \
 rm -rf /var/lib/apt/lists
 
 # install go
@@ -26,8 +23,11 @@ RUN . ~/.bashrc && foundryup
 ENV PATH="~/.foundry/bin:${PATH}"
 
 # clone optimism repository
+ENV OP_REPO=https://github.com/ethereum-optimism/optimism.git
+ENV OP_VERSION=${OP_VERSION:-v1.7.2}
+
 RUN mkdir -p ~/optimism && cd ~/optimism && \
-    git clone $OP_REPO --branch $OP_VERSION --single-branch . && \
+    git clone $OP_REPO --branch op-node/$OP_VERSION --single-branch . && \
     git switch -c branch-$OP_VERSION && \
     git submodule update --init --recursive && \
     go mod download && go mod tidy

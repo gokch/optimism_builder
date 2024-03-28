@@ -62,9 +62,9 @@ config=$(cat << EOL
   "gasPriceOracleOverhead": 2100,
   "gasPriceOracleScalar": 1000000,
 
-  "enableGovernance": true,
-  "governanceTokenSymbol": "OP",
-  "governanceTokenName": "Optimism",
+  "enableGovernance": false,
+  "governanceTokenSymbol": "NA",
+  "governanceTokenName": "NotApplicable",
   "governanceTokenOwner": "$GS_ADMIN_ADDRESS",
 
   "l2GenesisBlockGasLimit": "0x1c9c380",
@@ -83,12 +83,28 @@ config=$(cat << EOL
   "requiredProtocolVersion": "0x0000000000000000000000000000000000000000000000000000000000000000",
   "recommendedProtocolVersion": "0x0000000000000000000000000000000000000000000000000000000000000000",
 
+  "fundDevAccounts": true,
+  "useFaultProofs": false,
+  "usePlasma": false,
+
   "faultGameAbsolutePrestate": "0x03c7ae758795765c6664a5d39bf63841c71ff191e9189522bad8ebff5d4eca98",
   "faultGameMaxDepth": 44,
   "faultGameMaxDuration": 1200,
   "faultGameGenesisBlock": 0,
   "faultGameGenesisOutputRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "faultGameSplitDepth": 14
+  "faultGameSplitDepth": 14,
+  "faultGameWithdrawalDelay": 604800,
+
+  "preimageOracleMinProposalSize": 1800000,
+  "preimageOracleChallengePeriod": 86400,
+  "proofMaturityDelaySeconds": 12,
+  "disputeGameFinalityDelaySeconds": 6,
+  "respectedGameType": 0,
+  "daBondSize": 0,
+  "daChallengeProxy": "0x0000000000000000000000000000000000000000",
+  "daChallengeWindow": 0,
+  "daResolveWindow": 0,
+  "daResolverRefundPercentage": 0
 }
 EOL
 )
